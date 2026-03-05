@@ -1,0 +1,104 @@
+{
+  "identity": {
+    "name": "E1",
+    "persona": "The Anti-AI Creative Designer",
+    "mission": "Create a visceral, gold-and-black luxury experience that feels expensive, celebratory, and bold.",
+    "tone": "Premium, Energetic, Trustworthy, Celebratory"
+  },
+  "theme": {
+    "name": "Midnight Gold Celebration",
+    "mode": "dark",
+    "strategy": "High Contrast Luxury. Deep blacks provide the stage; Gold provides the performance.",
+    "background_style": "Matte Black with Gold Bokeh/Gradients"
+  },
+  "colors": {
+    "primary": "#FFD700",
+    "primary_dark": "#B8860B",
+    "secondary": "#1A1A1A",
+    "background": "#050505",
+    "surface": "#121212",
+    "text_main": "#FFFFFF",
+    "text_muted": "#A1A1AA",
+    "accent": "#F59E0B",
+    "border": "#333333",
+    "success": "#10B981",
+    "error": "#EF4444"
+  },
+  "typography": {
+    "font_family_heading": "Oswald, sans-serif",
+    "font_family_body": "Manrope, sans-serif",
+    "font_family_accent": "Playfair Display, serif",
+    "scale": {
+      "h1": "text-6xl md:text-8xl font-bold tracking-tighter uppercase",
+      "h2": "text-4xl md:text-6xl font-bold tracking-tight",
+      "h3": "text-2xl md:text-3xl font-semibold text-gold-400",
+      "body": "text-base md:text-lg leading-relaxed text-gray-300"
+    }
+  },
+  "layout_strategy": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "spacing": "space-y-24 md:space-y-32",
+    "grid": "grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12"
+  },
+  "components": {
+    "hero": {
+      "structure": "Full-screen height, centralized or split layout.",
+      "visuals": "Gradient overlay on car fleet image. Gold text floating over dark background.",
+      "cta": "Solid Gold button, Black text, Hover: White bg/Black text"
+    },
+    "cards": {
+      "style": "Glassmorphism or Solid Dark Grey with Gold Border (1px).",
+      "hover": "Translate-y-2, Shadow-Gold-Glow"
+    },
+    "buttons": {
+      "primary": "bg-[#FFD700] text-black hover:bg-white hover:text-black transition-all duration-300 font-bold uppercase tracking-widest px-8 py-4 rounded-none skew-x-[-10deg]",
+      "secondary": "border border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black transition-all duration-300 px-8 py-4 rounded-none"
+    },
+    "floating_whatsapp": {
+      "position": "fixed bottom-8 right-8 z-50",
+      "style": "bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 animate-bounce-slow"
+    }
+  },
+  "visual_assets": {
+    "hero_image": "https://images.unsplash.com/photo-1762393060999-ba7e0cc31379?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBzdXYlMjBjYXIlMjBmbGVldCUyMHJvYWR8ZW58MHx8fHwxNzcyNzM1MzQ3fDA&ixlib=rb-4.1.0&q=85",
+    "celebration_image": "https://images.unsplash.com/photo-1765947378538-86584af05397?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNTl8MHwxfHNlYXJjaHwzfHxjb2xvcmZ1bCUyMGJhbGxvb25zJTIwb3V0ZG9vcnN8ZW58MHx8fHwxNzcyNzM1MzU3fDA&ixlib=rb-4.1.0&q=85",
+    "lease_image": "https://images.unsplash.com/photo-1755010062224-c00c4623490d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxnb2xkJTIwY29pbnMlMjBzdGFja3xlbnwwfHx8fDE3NzI3MzUzNDl8MA&ixlib=rb-4.1.0&q=85",
+    "texture_bg": "https://images.unsplash.com/photo-1639617950002-e0e1bf8ecc4a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHw0fHxibGFjayUyMGdvbGQlMjBib2tlaCUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzcyNzM1MzUwfDA&ixlib=rb-4.1.0&q=85",
+    "lease_person": "https://images.unsplash.com/photo-1628608577164-8533a3dddbb3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwxfHxidXNpbmVzc21hbiUyMGx1eHVyeSUyMGNhciUyMHBob25lfGVufDB8fHx8MTc3MjczNTM1OHww&ixlib=rb-4.1.0&q=85"
+  },
+  "motion": {
+    "library": "framer-motion",
+    "viewport_once": true,
+    "variants": {
+      "fade_up": {
+        "hidden": { "opacity": 0, "y": 50 },
+        "visible": { "opacity": 1, "y": 0, "transition": { "duration": 0.8, "ease": "easeOut" } }
+      },
+      "stagger_container": {
+        "hidden": { "opacity": 0 },
+        "visible": { "opacity": 1, "transition": { "staggerChildren": 0.2 } }
+      }
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install dependencies: `yarn add framer-motion lucide-react clsx tailwind-merge`",
+    "Configure Tailwind with the Gold/Black palette in `tailwind.config.js`.",
+    "Use `Oswald` for headings and `Manrope` for body text. Add them via Google Fonts in index.css.",
+    "Implement smooth scrolling for navigation links.",
+    "Create a sticky Navbar that blurs the background.",
+    "The Hero section MUST use the `hero_image` with a dark gradient overlay so white/gold text pops.",
+    "For 'Celebration Drive', use the `celebration_image` on one side and text on the other. Use gold accents.",
+    "For 'Lease Your Car', use `lease_image` (coins) and `lease_person` to symbolize wealth.",
+    "Add the Floating WhatsApp button with the link: https://api.whatsapp.com/send?phone=917735537655",
+    "Ensure the Footer contains placeholder Phone, Email, Address if not provided in detail.",
+    "CRITICAL: Do not use gradient text on dark backgrounds if it reduces readability. Solid Gold (#FFD700) is better.",
+    "Use the `texture_bg` as a subtle background for the About or Contact section with low opacity overlay."
+  ],
+  "universal_guidelines": [
+    "Avoid generic centered layouts. Use asymmetry.",
+    "Use large negative space (p-24, p-32).",
+    "Micro-interactions on every button and link.",
+    "Ensure high contrast (Gold on Black is good, but check grey text).",
+    "Mobile responsiveness is paramount. Images must stack correctly."
+  ]
+}

@@ -1,0 +1,38 @@
+/* Custom styles for JIXDRIVE */
+
+/* Remove default app styles */
+.App {
+  min-height: 100vh;
+}
+
+/* Selection styling */
+::selection {
+  background-color: #FFD700;
+  color: #000000;
+}
+
+/* Focus styles */
+*:focus {
+  outline: 2px solid #FFD700;
+  outline-offset: 2px;
+}
+
+/* Button focus reset for custom styling */
+button:focus {
+  outline: none;
+}
+
+button:focus-visible {
+  outline: 2px solid #FFD700;
+  outline-offset: 2px;
+}
+
+/* Link hover effect */
+a {
+  transition: color 0.3s ease;
+}
+
+/* Image loading placeholder */
+.img-placeholder {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+}
