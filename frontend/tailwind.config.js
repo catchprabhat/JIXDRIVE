@@ -8,14 +8,14 @@ module.exports = {
     extend: {
       colors: {
         gold: {
-          DEFAULT: '#FFD700',
-          dark: '#B8860B',
-          light: '#FFEC8B',
+          DEFAULT: '#2563EB',
+          dark: '#1E40AF',
+          light: '#60A5FA',
         },
         dark: {
-          DEFAULT: '#050505',
-          surface: '#121212',
-          border: '#333333',
+          DEFAULT: '#0B1B3A',
+          surface: '#0F2A5F',
+          border: '#1D3A6F',
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -18,8 +18,8 @@ body {
   font-family: 'Manrope', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #050505;
-  color: #FFFFFF;
+  background-color: #F8FAFC;
+  color: #0B1B3A;
 }
 
 .font-heading {
@@ -36,7 +36,7 @@ body {
 
 /* Gold text gradient */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #FFD700 0%, #F59E0B 50%, #FFD700 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #60A5FA 50%, #2563EB 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -44,14 +44,14 @@ body {
 
 /* Gold glow effect */
 .gold-glow {
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.25);
 }
 
 /* Navbar blur effect */
 .navbar-blur {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background-color: rgba(5, 5, 5, 0.85);
+  background-color: rgba(248, 250, 252, 0.85);
 }
 
 /* Custom scrollbar */
@@ -60,16 +60,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #121212;
+  background: #E2E8F0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #FFD700;
+  background: #2563EB;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B8860B;
+  background: #1E40AF;
 }
 
 /* Floating animation */
@@ -102,25 +102,25 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 51 100% 50%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --background: 210 40% 98%;
+    --foreground: 224 71% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 12%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 224 71% 12%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 224 71% 12%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 14.9%;
-    --ring: 51 100% 50%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
     --radius: 0.5rem;
   }
 }
