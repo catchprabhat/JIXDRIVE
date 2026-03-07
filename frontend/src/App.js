@@ -206,7 +206,7 @@ const CelebrationSection = () => {
     { src: "/one.png", alt: "Celebration drive setup 1" },
     { src: "/two.png", alt: "Celebration drive setup 2" },
     { src: "/three.png", alt: "Celebration drive setup 3" },
-    { src: "/Four.png", alt: "Celebration drive setup 4" },
+    { src: "/four.png", fallbackSrc: "/Four.png", alt: "Celebration drive setup 4" },
   ];
 
   const [api, setApi] = useState();
@@ -294,6 +294,11 @@ const CelebrationSection = () => {
                         alt={slide.alt}
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="lazy"
+                        onError={(e) => {
+                          if (!slide.fallbackSrc) return;
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = slide.fallbackSrc;
+                        }}
                       />
                     </div>
                   </div>
@@ -592,7 +597,7 @@ const FooterSection = () => {
               www.jixdrive.in
             </a>
             <p className="font-body text-white/60 text-sm">
-              © 2024 JIXDRIVE. All rights reserved.
+              © 2026 JIXDRIVE. All rights reserved.
             </p>
           </div>
         </div>
