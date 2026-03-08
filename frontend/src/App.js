@@ -510,8 +510,8 @@ const FooterSection = () => {
                 </div>
                 <div>
                   <div className="font-heading text-white">Email Us</div>
-                  <a href="mailto:info@jixdrive.in" className="font-body text-white/90 hover:text-white transition-colors" data-testid="contact-email">
-                    info@jixdrive.in
+                  <a href="mailto:jixdriveblr@gmail.com" className="font-body text-white/90 hover:text-white transition-colors" data-testid="contact-email">
+                    jixdriveblr@gmail.com
                   </a>
                 </div>
               </div>
@@ -578,7 +578,7 @@ const FooterSection = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-gold mt-0.5" />
-                  <a href="mailto:info@jixdrive.in" className="hover:text-white transition-colors">info@jixdrive.in</a>
+                  <a href="mailto:jixdriveblr@gmail.com" className="hover:text-white transition-colors">jixdriveblr@gmail.com</a>
                 </div>
               </div>
             </div>
