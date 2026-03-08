@@ -127,9 +127,7 @@ const Navbar = () => {
 
 // Hero Section (Home)
 const HeroSection = () => {
-  const whatsappBookingLink = `https://api.whatsapp.com/send?phone=917735537655&text=${encodeURIComponent(
-    "Hii, I want to book a car"
-  )}`;
+  const bookingLink = "https://www.kzplusautocare.in/self-drive";
 
   const scrollToPackages = () => {
     const element = document.getElementById("packages");
@@ -185,7 +183,7 @@ const HeroSection = () => {
             <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              href={whatsappBookingLink}
+              href={bookingLink}
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-dark text-dark font-heading font-bold uppercase tracking-wider px-8 py-4 hover:bg-dark hover:text-white transition-colors duration-300 text-center"
@@ -610,12 +608,12 @@ const FooterSection = () => {
 const WhatsAppButton = () => {
   return (
     <a
-      href="https://api.whatsapp.com/send?phone=917735537655"
+      href="https://www.kzplusautocare.in/self-drive"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 animate-pulse-glow"
       data-testid="whatsapp-button"
-      aria-label="Chat on WhatsApp"
+      aria-label="Book now"
     >
       <WhatsAppIcon />
     </a>
