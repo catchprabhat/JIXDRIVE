@@ -11,6 +11,11 @@
   color: #FFFFFF;
 }
 
+.dark ::selection {
+  background-color: #60A5FA;
+  color: #0f172a;
+}
+
 /* Focus styles */
 *:focus {
   outline: 2px solid #2563EB;

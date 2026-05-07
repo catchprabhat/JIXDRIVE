@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Gift, Coins, Menu, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // WhatsApp Icon Component
 const WhatsAppIcon = () => (
@@ -39,7 +40,7 @@ const Navbar = () => {
       className={[
         "fixed z-50 overflow-visible transition-all duration-300",
         isScrolled
-          ? "top-0 left-0 right-0 navbar-blur border-b border-dark/15 shadow-lg"
+          ? "top-0 left-0 right-0 navbar-blur border-b border-dark/15 dark:border-slate-600/25 shadow-lg"
           : "top-0 left-0 right-0 bg-transparent",
       ].join(" ")}
       data-testid="navbar"
@@ -49,45 +50,51 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center overflow-visible" data-testid="logo-section">
             <img
-              src="/first.png"
+              src="/jixdrivelogo.png"
               alt="First logo"
               className="h-14 sm:h-16 md:h-[72px] w-auto max-w-none object-contain -my-2 shrink-0"
             />
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <button 
-              onClick={() => scrollToSection('home')}
-              className="font-body text-dark hover:text-gold transition-colors duration-300"
-              data-testid="nav-home"
-            >
-              Home
-            </button>
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="font-body text-dark hover:text-gold transition-colors duration-300"
-              data-testid="nav-about"
-            >
-              About Us
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="font-body text-dark hover:text-gold transition-colors duration-300"
-              data-testid="nav-contact"
-            >
-              Contact Us
-            </button>
+          {/* Desktop Navigation + theme */}
+          <div className="hidden md:flex items-center gap-6">
+            <div className="flex items-center gap-8">
+              <button 
+                onClick={() => scrollToSection('home')}
+                className="font-body text-dark dark:text-slate-100 hover:text-gold transition-colors duration-300"
+                data-testid="nav-home"
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="font-body text-dark dark:text-slate-100 hover:text-gold transition-colors duration-300"
+                data-testid="nav-about"
+              >
+                About Us
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="font-body text-dark dark:text-slate-100 hover:text-gold transition-colors duration-300"
+                data-testid="nav-contact"
+              >
+                Contact Us
+              </button>
+            </div>
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-dark"
-            onClick={() => setIsOpen(!isOpen)}
-            data-testid="mobile-menu-btn"
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          {/* Mobile: theme + menu */}
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle />
+            <button 
+              className="text-dark dark:text-slate-100 p-1"
+              onClick={() => setIsOpen(!isOpen)}
+              data-testid="mobile-menu-btn"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -101,19 +108,19 @@ const Navbar = () => {
             <div className="flex flex-col gap-4">
               <button 
                 onClick={() => scrollToSection('home')}
-                className="font-body text-dark hover:text-gold transition-colors duration-300 text-left py-2"
+                className="font-body text-dark dark:text-slate-100 hover:text-gold transition-colors duration-300 text-left py-2"
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className="font-body text-dark hover:text-gold transition-colors duration-300 text-left py-2"
+                className="font-body text-dark dark:text-slate-100 hover:text-gold transition-colors duration-300 text-left py-2"
               >
                 About Us
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="font-body text-dark hover:text-gold transition-colors duration-300 text-left py-2"
+                className="font-body text-dark dark:text-slate-100 hover:text-gold transition-colors duration-300 text-left py-2"
               >
                 Contact Us
               </button>
@@ -129,6 +136,50 @@ const Navbar = () => {
 const HeroSection = () => {
   const bookingLink = "https://www.kzplusautocare.in/self-drive";
 
+  const carSlides = [
+    { src: "/cars/jd1.jpg", alt: "Self-drive fleet vehicle 1" },
+    { src: "/cars/jd2.jpg", alt: "Self-drive fleet vehicle 2" },
+    { src: "/cars/jd3.jpg", alt: "Self-drive fleet vehicle 3" },
+    { src: "/cars/jd4jpg.jpg", alt: "Self-drive fleet vehicle 4" },
+    { src: "/cars/jd5.jpg", alt: "Self-drive fleet vehicle 5" },
+    { src: "/cars/jd6.jpg", alt: "Self-drive fleet vehicle 6" },
+    { src: "/cars/jd7.jpg", alt: "Self-drive fleet vehicle 7" },
+  ];
+
+  const [heroCarouselApi, setHeroCarouselApi] = useState();
+  const [heroCurrent, setHeroCurrent] = useState(0);
+  const [heroCount, setHeroCount] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
+
+  useEffect(() => {
+    if (!heroCarouselApi) return;
+
+    const update = () => {
+      setHeroCount(heroCarouselApi.scrollSnapList().length);
+      setHeroCurrent(heroCarouselApi.selectedScrollSnap());
+    };
+
+    update();
+    heroCarouselApi.on("select", update);
+    heroCarouselApi.on("reInit", update);
+
+    return () => {
+      heroCarouselApi.off("select", update);
+      heroCarouselApi.off("reInit", update);
+    };
+  }, [heroCarouselApi]);
+
+  useEffect(() => {
+    if (!heroCarouselApi || heroPaused || heroCount <= 1) return;
+    const intervalId = window.setInterval(() => {
+      heroCarouselApi.scrollNext();
+    }, 4000);
+
+    return () => window.clearInterval(intervalId);
+  }, [heroCarouselApi, heroPaused, heroCount]);
+
+  const scrollHeroTo = useCallback((index) => heroCarouselApi?.scrollTo(index), [heroCarouselApi]);
+
   const scrollToPackages = () => {
     const element = document.getElementById("packages");
     if (element) {
@@ -139,17 +190,14 @@ const HeroSection = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-gradient-to-br from-slate-50 via-indigo-50/90 to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
       data-testid="hero-section"
-      style={{
-        background: "linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 50%, #F8FAFC 100%)"
-      }}
     >
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
           src="https://customer-assets.emergentagent.com/job_landing-page-pro-5/artifacts/hsw4q3h2_image.png"
           alt=""
-          className="w-full h-full max-w-none object-cover opacity-[0.10]"
+          className="w-full h-full max-w-none object-cover opacity-[0.10] dark:opacity-[0.06]"
           aria-hidden="true"
         />
       </div>
@@ -163,19 +211,73 @@ const HeroSection = () => {
           <h1 className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl text-gold mb-4" data-testid="hero-title">
             Self-Drive
           </h1>
-          <p className="font-body text-xl sm:text-2xl text-dark/90 mb-6">
+          <p className="font-body text-xl sm:text-2xl text-dark/90 dark:text-slate-200 mb-6">
             Freedom to drive your way.
           </p>
-          <p className="font-body text-dark/70 text-lg max-w-2xl mx-auto mb-10">
+          <p className="font-body text-dark/70 dark:text-slate-400 text-lg max-w-2xl mx-auto mb-8">
             Experience the ultimate freedom with our premium self-drive car rental service.
             Choose from our fleet of well-maintained vehicles and hit the road on your own terms.
           </p>
+
+          <div className="mb-10 w-full max-w-3xl mx-auto">
+            <Carousel
+              opts={{ loop: true, align: "center" }}
+              setApi={setHeroCarouselApi}
+              className="w-full"
+              data-testid="hero-carousel"
+              onPointerEnter={() => setHeroPaused(true)}
+              onPointerLeave={() => setHeroPaused(false)}
+              onFocusCapture={() => setHeroPaused(true)}
+              onBlurCapture={() => setHeroPaused(false)}
+            >
+              <CarouselContent className="-ml-0">
+                {carSlides.map((slide) => (
+                  <CarouselItem key={slide.src} className="pl-0 basis-full">
+                    <div className="overflow-hidden rounded-2xl shadow-xl border border-dark/10 dark:border-slate-600/40 bg-white dark:bg-slate-800">
+                      <div className="relative w-full h-[200px] sm:h-[260px] md:h-[300px]">
+                        <img
+                          src={slide.src}
+                          alt={slide.alt}
+                          className="absolute inset-0 w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              <CarouselPrevious className="left-2 sm:left-3 bg-white/90 hover:bg-white border-dark/15 text-dark dark:bg-white dark:hover:bg-white/95 dark:border-gold/40 dark:text-gold" />
+              <CarouselNext className="right-2 sm:right-3 bg-white/90 hover:bg-white border-dark/15 text-dark dark:bg-white dark:hover:bg-white/95 dark:border-gold/40 dark:text-gold" />
+            </Carousel>
+
+            {heroCount > 1 && (
+              <div className="mt-4 flex justify-center gap-2" aria-label="Fleet carousel pagination">
+                {Array.from({ length: heroCount }).map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => scrollHeroTo(index)}
+                    className={[
+                      "h-2 rounded-full transition-all",
+                      index === heroCurrent
+                        ? "w-8 bg-dark dark:bg-white dark:ring-2 dark:ring-gold"
+                        : "w-2 bg-dark/25 dark:bg-white/25 hover:bg-dark/35 dark:hover:bg-white/40",
+                    ].join(" ")}
+                    aria-label={`Go to fleet image ${index + 1}`}
+                    aria-current={index === heroCurrent}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center" data-testid="hero-cta">
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               onClick={scrollToPackages}
-              className="bg-dark text-white font-heading font-bold uppercase tracking-wider px-8 py-4 hover:bg-dark-surface transition-colors duration-300"
+              className="bg-dark text-white font-heading font-bold uppercase tracking-wider px-8 py-4 hover:bg-dark-surface transition-colors duration-300 dark:bg-white dark:text-gold dark:hover:bg-white/95 dark:hover:text-gold-dark"
               data-testid="hero-cta-experience"
             >
               Book Experience
@@ -186,7 +288,7 @@ const HeroSection = () => {
               href={bookingLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-dark text-dark font-heading font-bold uppercase tracking-wider px-8 py-4 hover:bg-dark hover:text-white transition-colors duration-300 text-center"
+              className="border-2 border-dark text-dark font-heading font-bold uppercase tracking-wider px-8 py-4 hover:bg-dark hover:text-white transition-colors duration-300 text-center dark:bg-white dark:border-white dark:text-gold dark:hover:bg-white/95 dark:hover:text-gold-dark"
               data-testid="hero-cta-book-now"
             >
               Book Now
@@ -243,7 +345,7 @@ const CelebrationSection = () => {
 
   return (
     <section 
-      className="relative py-24 bg-white"
+      className="relative py-24 bg-white dark:bg-slate-900"
       data-testid="celebration-section"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -254,20 +356,20 @@ const CelebrationSection = () => {
           transition={{ duration: 0.7 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl text-dark mb-4" data-testid="celebration-title">
+          <h2 className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl text-dark dark:text-slate-100 mb-4" data-testid="celebration-title">
             Celebration Drive
           </h2>
-          <p className="font-heading text-xl sm:text-2xl text-dark/80 mb-6">
+          <p className="font-heading text-xl sm:text-2xl text-dark/80 dark:text-slate-300 mb-6">
             Ride. Celebrate. Repeat.
           </p>
-          <p className="font-body text-dark/70 text-lg max-w-3xl mx-auto mb-10">
+          <p className="font-body text-dark/70 dark:text-slate-400 text-lg max-w-3xl mx-auto mb-10">
             Celebrate your birthday, anniversary, or a surprise moment by booking a car with us.
             We’ll take care of the decorations and cake before you begin your drive, so you just show up and enjoy.
             Choose your car, pick your vibe, and make memories that feel effortless and premium.
           </p>
-          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-dark/10 bg-white/70 shadow-sm">
+          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-dark/10 dark:border-slate-600/40 bg-white/70 dark:bg-slate-800/80 shadow-sm">
             <Gift className="w-6 h-6 text-gold" />
-            <span className="font-body text-dark/80">Decorations & Cake Included</span>
+            <span className="font-body text-dark/80 dark:text-slate-300">Decorations & Cake Included</span>
           </div>
         </motion.div>
 
@@ -285,7 +387,7 @@ const CelebrationSection = () => {
             <CarouselContent className="-ml-0">
               {slides.map((slide) => (
                 <CarouselItem key={slide.src} className="pl-0">
-                  <div className="overflow-hidden rounded-3xl shadow-2xl border border-dark/10 bg-white">
+                  <div className="overflow-hidden rounded-3xl shadow-2xl border border-dark/10 dark:border-slate-600/40 bg-white dark:bg-slate-800">
                     <div className="relative w-full h-[320px] sm:h-[420px] md:h-[520px] lg:h-[600px]">
                       <img
                         src={slide.src}
@@ -304,8 +406,8 @@ const CelebrationSection = () => {
               ))}
             </CarouselContent>
 
-            <CarouselPrevious className="left-3 sm:left-5 bg-white/80 hover:bg-white border-dark/15" />
-            <CarouselNext className="right-3 sm:right-5 bg-white/80 hover:bg-white border-dark/15" />
+            <CarouselPrevious className="left-3 sm:left-5 bg-white/80 hover:bg-white border-dark/15 text-dark dark:bg-white dark:hover:bg-white/95 dark:border-gold/40 dark:text-gold" />
+            <CarouselNext className="right-3 sm:right-5 bg-white/80 hover:bg-white border-dark/15 text-dark dark:bg-white dark:hover:bg-white/95 dark:border-gold/40 dark:text-gold" />
           </Carousel>
 
           {count > 1 && (
@@ -317,7 +419,9 @@ const CelebrationSection = () => {
                   onClick={() => scrollTo(index)}
                   className={[
                     "h-2.5 rounded-full transition-all",
-                    index === current ? "w-10 bg-dark" : "w-2.5 bg-dark/25 hover:bg-dark/35",
+                    index === current
+                      ? "w-10 bg-dark dark:bg-white dark:ring-2 dark:ring-gold"
+                      : "w-2.5 bg-dark/25 dark:bg-white/25 hover:bg-dark/35 dark:hover:bg-white/40",
                   ].join(" ")}
                   aria-label={`Go to slide ${index + 1}`}
                   aria-current={index === current}
@@ -380,16 +484,16 @@ const PackagesSection = () => {
   ];
 
   return (
-    <section id="packages" className="py-24 bg-slate-50" data-testid="packages-section">
+    <section id="packages" className="py-24 bg-slate-50 dark:bg-slate-950" data-testid="packages-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-heading text-4xl sm:text-5xl text-dark text-center mb-12" data-testid="packages-title">
+        <h2 className="font-heading text-4xl sm:text-5xl text-dark dark:text-slate-100 text-center mb-12" data-testid="packages-title">
           Packages
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {packages.map((pkg) => (
-            <div key={pkg.title} className="bg-white rounded-2xl shadow-xl border border-dark/10 p-8">
-              <h3 className="font-heading text-xl text-dark mb-5 text-center">{pkg.title}</h3>
-              <ul className="space-y-3 text-dark/80 font-body">
+            <div key={pkg.title} className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-dark/10 dark:border-slate-600/40 p-8">
+              <h3 className="font-heading text-xl text-dark dark:text-slate-100 mb-5 text-center">{pkg.title}</h3>
+              <ul className="space-y-3 text-dark/80 dark:text-slate-300 font-body">
                 {pkg.items.map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="text-gold mt-1">✓</span>
@@ -398,7 +502,7 @@ const PackagesSection = () => {
                 ))}
               </ul>
               <div className="mt-8 flex justify-center">
-                <div className="bg-dark text-white font-heading font-bold px-6 py-3 rounded-xl">
+                <div className="bg-dark text-white font-heading font-bold px-6 py-3 rounded-xl dark:bg-white dark:text-gold">
                   {pkg.price}
                 </div>
               </div>
@@ -415,7 +519,7 @@ const LeaseSection = () => {
   return (
     <section 
       id="about"
-      className="relative py-24 bg-white"
+      className="relative py-24 bg-white dark:bg-slate-900"
       data-testid="lease-section"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -430,17 +534,17 @@ const LeaseSection = () => {
             <h2 className="font-heading font-bold text-5xl sm:text-6xl lg:text-7xl text-gold mb-4" data-testid="lease-title">
               Lease<br />Your Car.
             </h2>
-            <p className="font-heading text-xl sm:text-2xl text-dark/90 mb-6">
+            <p className="font-heading text-xl sm:text-2xl text-dark/90 dark:text-slate-200 mb-6">
               Turn your idle car into daily income
             </p>
-            <p className="font-body text-dark/70 text-lg max-w-lg mb-8">
+            <p className="font-body text-dark/70 dark:text-slate-400 text-lg max-w-lg mb-8">
               Have a car sitting in your garage? Put it to work! Partner with JIXDRIVE 
               and earn passive income by leasing your vehicle. We handle everything - 
               from maintenance to customer management.
             </p>
             <div className="flex items-center gap-4 mb-6">
               <Coins className="w-8 h-8 text-gold" />
-              <span className="font-body text-dark/80">Start earning today</span>
+              <span className="font-body text-dark/80 dark:text-slate-300">Start earning today</span>
             </div>
           </motion.div>
 
@@ -623,7 +727,7 @@ const WhatsAppButton = () => {
 // Main App Component
 function App() {
   return (
-    <div className="App bg-slate-50 text-dark min-h-screen">
+    <div className="App bg-slate-50 dark:bg-slate-950 text-dark dark:text-slate-100 min-h-screen transition-colors duration-300">
       <Navbar />
       <main>
         <HeroSection />
