@@ -732,7 +732,7 @@ function App() {
       <main>
         <HeroSection />
         <CelebrationSection />
-        <PackagesSection />
+        {/* <PackagesSection /> */}
         <LeaseSection />
         <FooterSection />
       </main>
