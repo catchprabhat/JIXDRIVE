@@ -641,7 +641,7 @@ const FooterSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             <div>
               <div className="flex items-center gap-3">
-                <img src="/first.png" alt="First logo" className="h-10 w-auto object-contain" />
+                <img src="/jixdrivelogo.png" alt="jixdrive logo" className="h-10 w-auto object-contain" />
                 <span className="text-white/70">x</span>
                 <img src="/second.png" alt="Second logo" className="h-10 w-auto object-contain" />
               </div>
