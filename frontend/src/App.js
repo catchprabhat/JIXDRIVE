@@ -602,8 +602,8 @@ const FooterSection = () => {
                 </div>
                 <div>
                   <div className="font-heading text-white">Call Us</div>
-                  <a href="tel:+917735537655" className="font-body text-white/90 hover:text-white transition-colors" data-testid="contact-phone">
-                    +91 77355 37655
+                  <a href="tel:+917975317655" className="font-body text-white/90 hover:text-white transition-colors" data-testid="contact-phone">
+                    +91 79753 17655
                   </a>
                 </div>
               </div>
@@ -678,7 +678,7 @@ const FooterSection = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-gold mt-0.5" />
-                  <a href="tel:+917735537655" className="hover:text-white transition-colors">+91 77355 37655</a>
+                  <a href="tel:+917975317655" className="hover:text-white transition-colors">+91 79753 17655</a>
                 </div>
                 <div className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-gold mt-0.5" />
@@ -712,12 +712,12 @@ const FooterSection = () => {
 const WhatsAppButton = () => {
   return (
     <a
-      href="https://www.kzplusautocare.in/self-drive"
+      href="https://wa.me/917975317655"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 animate-pulse-glow"
       data-testid="whatsapp-button"
-      aria-label="Book now"
+      aria-label="Contact on WhatsApp"
     >
       <WhatsAppIcon />
     </a>
