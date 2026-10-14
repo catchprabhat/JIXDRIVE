@@ -664,7 +664,6 @@ const FooterSection = () => {
               <div className="space-y-2 font-body text-white/70">
                 <div>Self-Drive</div>
                 <div>Celebration Drive</div>
-                <div>Lease Your Car</div>
                 <div>Packages</div>
               </div>
             </div>
@@ -733,7 +732,7 @@ function App() {
         <HeroSection />
         <CelebrationSection />
         {/* <PackagesSection /> */}
-        <LeaseSection />
+        {/* <LeaseSection /> */}
         <FooterSection />
       </main>
       <WhatsAppButton />
