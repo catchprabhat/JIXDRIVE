@@ -89,7 +89,7 @@
     "The Hero section MUST use the `hero_image` with a dark gradient overlay so white/gold text pops.",
     "For 'Celebration Drive', use the `celebration_image` on one side and text on the other. Use gold accents.",
     "For 'Lease Your Car', use `lease_image` (coins) and `lease_person` to symbolize wealth.",
-    "Add the Floating WhatsApp button with the link: https://api.whatsapp.com/send?phone=917735537655",
+    "Add the Floating WhatsApp button with the link: https://api.whatsapp.com/send?phone=917975317655",
     "Ensure the Footer contains placeholder Phone, Email, Address if not provided in detail.",
     "CRITICAL: Do not use gradient text on dark backgrounds if it reduces readability. Solid Gold (#FFD700) is better.",
     "Use the `texture_bg` as a subtle background for the About or Contact section with low opacity overlay."
